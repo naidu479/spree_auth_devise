@@ -7,6 +7,7 @@ Warden::Manager.after_set_user except: :fetch do |user, auth, opts|
         loyalty_points_earned = order.loyalty_points_for(order.total)
         order.create_credit_transaction(loyalty_points_earned)
         order.redeem_loyalty_points
+        user.reload
       end
     end
   end
